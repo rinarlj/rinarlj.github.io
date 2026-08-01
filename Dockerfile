@@ -22,5 +22,6 @@ RUN npm run build
 
 EXPOSE 4000
 
-# github-pages pins Jekyll 3.x (no built-in live reload like Jekyll 4).
+# Preview image: the site is baked in at build time, so no --watch/--livereload here.
+# For live reload during development use `npm run serve` (see README).
 CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--port", "4000"]

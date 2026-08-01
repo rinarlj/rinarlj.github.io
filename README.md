@@ -68,13 +68,14 @@ Styles and scripts are built from `src/` into `assets/` with **Gulp**; Jekyll th
    npm run build
    ```
 
-4. **Live reload** (assets + Jekyll rebuild + BrowserSync on `_site`):
+4. **Live reload** (Gulp compiles `src/` into `assets/`; `jekyll serve --livereload` serves the
+   site and refreshes the browser):
 
    ```bash
    npm run serve
    ```
 
-   Or preview without BrowserSync after a build:
+   Or preview without the asset watcher after a build:
 
    ```bash
    npm run build && bundle exec jekyll serve
@@ -92,7 +93,7 @@ Use this to try the theme without installing Ruby or Node on your machine.
 docker compose up --build
 ```
 
-Open [http://localhost:4000](http://localhost:4000). The `github-pages` gem uses **Jekyll 3.x**, which does not include Jekyll 4's built-in live reload; restart the container to pick up changes, or use the [local workflow with `npm run serve`](#development-local) (BrowserSync).
+Open [http://localhost:4000](http://localhost:4000). The site is baked into the image, so restart the container to pick up changes, or use the [local workflow with `npm run serve`](#development-local) for live reload.
 
 - **Build only** (output stays in the container, no HTTP server):
 

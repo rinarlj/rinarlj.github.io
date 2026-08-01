@@ -6,7 +6,6 @@ const gulpSass = require('gulp-sass');
 const dartSass = require('sass');
 const plumber = require('gulp-plumber');
 const cp = require('child_process');
-const browserSync = require('browser-sync').create();
 
 const sassCompile = gulpSass(dartSass);
 const jekyllCommand = /^win/.test(process.platform) ? 'jekyll.bat' : 'bundle';
@@ -56,23 +55,28 @@ function jsTask() {
     .pipe(dest('assets/js/'));
 }
 
-function reload(done) {
-  browserSync.reload();
-  done();
-}
-
-function initBrowserSync(done) {
-  browserSync.init({
-    server: { baseDir: '_site' },
+/**
+ * Long-running: `jekyll serve --livereload` owns the HTTP server, the site rebuild and the
+ * browser refresh. done() only fires when the child exits, which under `npm run serve` means
+ * the user stopped it (or Jekyll crashed, surfaced as a task error).
+ */
+function jekyllServe(done) {
+  const child = cp.spawn(jekyllCommand, ['exec', 'jekyll', 'serve', '--livereload'], {
+    stdio: 'inherit',
   });
-  done();
+  child.on('close', (code) => done(code === 0 ? undefined : new Error(`Jekyll exited with code ${code}`)));
+  child.on('error', done);
 }
 
+/**
+ * Only compiles src/ into assets/. Jekyll's own --watch sees the assets/ write and handles
+ * the rebuild + livereload, so there is no jekyllBuild or reload step here. HTML/layouts
+ * are watched by Jekyll directly.
+ */
 function watchFiles(done) {
-  watch('src/styles/**/*.scss', series(sassTask, jekyllBuild, reload));
-  watch('src/js/**/*.js', series(jsTask, jekyllBuild, reload));
-  watch('src/fonts/**/*', series(fontsTask, jekyllBuild, reload));
-  watch(['*.html', '_includes/*.html', '_layouts/*.html'], series(jekyllBuild, reload));
+  watch('src/styles/**/*.scss', sassTask);
+  watch('src/js/**/*.js', jsTask);
+  watch('src/fonts/**/*', fontsTask);
   done();
 }
 
@@ -84,4 +88,4 @@ exports.fonts = fontsTask;
 exports.jekyllBuild = jekyllBuild;
 exports.buildAssets = buildAssets;
 exports.build = series(buildAssets, jekyllBuild);
-exports.default = series(buildAssets, jekyllBuild, parallel(initBrowserSync, watchFiles));
+exports.default = series(buildAssets, parallel(jekyllServe, watchFiles));
