@@ -29,12 +29,5 @@ updates:
         dependency-type: "production"
         update-types: ["patch"]
 
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-    open-pull-requests-limit: 5
-    groups:
-      github-actions:
-        patterns: ["*"]
+# NOTE: no "github-actions" ecosystem block here on purpose. Dependabot errors on every
+# run if that ecosystem is declared while the repo has no .github/workflows/ directory.
