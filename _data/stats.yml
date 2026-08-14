@@ -1,0 +1,23 @@
+# Hero-band stats — large numbers shown in a coloured strip.
+#
+# Fields:
+#   value (required)  display string, can include suffixes (k, +, %)
+#   count (optional)  numeric source for the count-up animation
+#                     (e.g. "2500" for value "2.5k+"). Omit to skip animation.
+#   label (required)  caption shown under the number
+#
+# 4 entries reads best on desktop; falls back to 2x2 on mobile.
+
+- value: "10+"
+  count: "10"
+  label: Years of Experience
+
+- value: "$47M"
+  label: Payments Processed
+
+- value: "2.5k+"
+  label: GitHub Stars
+
+- value: "3"
+  count: "3"
+  label: Countries Worked In

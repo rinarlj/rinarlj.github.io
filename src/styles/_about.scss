@@ -1,61 +1,145 @@
+/* ── About / Expertise section ─────────────────────────────── */
 #about {
-  font-size: 120%;
-  
-  width: 90%;
-  margin: 0 auto;
+  padding: 5rem 2rem 4.5rem;
+
+  @media (max-width: $cut) {
+    padding: 3.5rem 1.25rem 3rem;
+  }
+}
+
+/* Section intro: title + bio */
+.user-details {
   max-width: 960px;
-  @media only screen and (min-width: $cut) {
-    width: 80%;
-  }
-  svg {
-    width: 60px !important;
-    height: auto;
-  }
+  margin: 0 auto 3rem;
+  text-align: center;
 
-  .tech-icons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0.35em;
-    margin: 0.25em 0 0.5em;
-    font-size: 1em;
+  h1 {
+    font-family: var(--font-display, 'Montserrat', sans-serif);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    color: var(--color-text, #111827);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin: 0 0 1.25rem;
+    padding: 0;
 
-    i {
-      font-size: 1em;
-      line-height: 1;
+    &::after {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 3px;
+      background: var(--color-bar-fill, $main);
+      border-radius: 2px;
+      margin: 0.75rem auto 0;
+      opacity: 0.25;
     }
   }
-}
 
-.tech {
-  margin: 10px;
-  flex: 1 1 0;
-  h2, h3 {
-    font-weight: 400;
-  }
-}
-
-.user {
-  text-align: center;
-  font-size: 60px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
   p {
-    font-size: 16px;
-  }
-  @media only screen and (min-width: $cut) {
-    flex-wrap: nowrap;
-    font-size: 75px;
+    font-family: var(--font-sans, 'Inter', sans-serif);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-text-muted, #6b7280);
+    margin: 0;
   }
 }
 
-.user-details {
-  text-align: center;
-  margin: 5px auto;
-  h1 {
-    font-weight: 400;
+/* Three-column expertise grid — separator lines, no card backgrounds */
+.user {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 960px;
+  margin: 0 auto;
+
+  @media (min-width: $cut) {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* Individual expertise panel — editorial, not interactive */
+.tech {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem 2rem;
+
+  /* Horizontal separator on mobile */
+  @media (max-width: $cut) {
+    border-bottom: 1px solid var(--color-border, #e5e7eb);
+
+    &:last-child { border-bottom: none; }
+  }
+
+  /* Vertical column separators on desktop via inset shadow (no layout shift) */
+  @media (min-width: $cut) {
+    box-shadow: inset -1px 0 0 var(--color-border, #e5e7eb);
+
+    &:last-child { box-shadow: none; }
+  }
+
+  /* Short decorative rule — replaces the CTA-style accent border */
+  &::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-bar-fill, #1a222c);
+    opacity: 0.2;
+    margin: 0 auto 1.5rem;
+  }
+
+  h2, h3 {
+    font-family: var(--font-display, 'Montserrat', sans-serif);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text, #374151);
+    margin: 0.85rem 0 0.6rem;
+    padding: 0;
+    order: 2;
+  }
+
+  p {
+    font-family: var(--font-sans, 'Inter', sans-serif);
+    font-size: 0.9375rem;
+    line-height: 1.82;
+    color: var(--color-text-muted, #6b7280);
+    margin: 0;
+    order: 3;
+    flex: 1;
+  }
+}
+
+/* Icon cluster */
+.tech-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45em;
+  font-size: clamp(1.5rem, 3.5vw, 1.9rem);
+  margin: 0;
+  order: 1;
+  opacity: 0.7;
+
+  i { line-height: 1; }
+}
+
+/* Metric caption — subtle border-top rule, no pill styling */
+.tech-highlight {
+  order: 4;
+  display: block;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted, #6b7280);
+  margin-top: 1.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border, #e5e7eb);
+  white-space: nowrap;
+  opacity: 0.75;
 }

@@ -1,0 +1,14 @@
+<section class="stats" aria-label="Quick stats">
+  <div class="stats__inner">
+    {% for stat in site.data.stats %}
+    <div class="stat">
+      {% if stat.count %}
+      <div class="stat__value" data-count-to="{{ stat.count }}">{{ stat.value }}</div>
+      {% else %}
+      <div class="stat__value">{{ stat.value }}</div>
+      {% endif %}
+      <div class="stat__label">{{ stat.label }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>

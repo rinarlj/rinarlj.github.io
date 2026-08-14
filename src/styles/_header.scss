@@ -1,144 +1,193 @@
+/* ── Hero ─────────────────────────────────────────────────── */
 #particles-js {
-  background: $main;
-  display: flex;
-  vertical-align: bottom;
+  background: var(--color-bg, $main);
+  position: relative;
   min-height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   .particles-js-canvas-el {
-    height: 100vh !important;
+    position: absolute;
+    inset: 0;
+    height: 100% !important;
+  }
+
+  /* Gradient fade at bottom */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 140px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.04) 60%, rgba(0, 0, 0, 0.08));
+    pointer-events: none;
   }
 }
 
+/* ── Centred content block ────────────────────────────────── */
 .header {
-  font-family: 'Montserrat', sans-serif;
+  position: relative;
   z-index: 1;
   text-align: center;
-  color:#FFF;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: 0 auto;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  .site-title {
-    font-size: 50px;
-    display: block;
-    line-height: 1;
-    color: #FFF;
-    @media only screen and (min-width:$cut){
-      margin: 0;
-      font-size: 76px;
-    }
-  }
-  .site-description {
-    font-size: 20px;
-    display: block;
-    line-height: 1;
-    color: #FFF;
-    margin-top: 10px;
-    @media only screen and (min-width:$cut){
-      font-size: 34px;
-    }
-  }
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
 }
 
-.header-links {
-  margin: 10px;
-  .link {
-    color: #FFF;
-    text-decoration: none;
-    font-size: 15px;
-    margin: 10px;
-    @media only screen and (min-width:$cut){
-      font-size: 20px;
-    }
-  }
+.site-title {
+  font-family: var(--font-display, 'Montserrat', sans-serif);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-hero-text, #fff);
+  display: block;
+  margin-bottom: 0.55rem;
 }
 
+/* Thin rule between name and title */
+.header-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--color-hero-muted, rgba(255, 255, 255, 0.4));
+  margin: 0.5rem auto 0.6rem;
+  display: block;
+}
+
+.site-description {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-weight: 500;
+  font-size: clamp(0.975rem, 3.6vw, 1.3rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-hero-muted, rgba(255, 255, 255, 0.9));
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* ── Social icon row ──────────────────────────────────────── */
 .header-icons {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
 
-  text-align: center;
   a {
-    // no borders
-    outline: 0 !important;
-    border: none !important;
-    outline-style: none !important;
-    -moz-outline-style: none !important;
-
-    padding: none;
-    margin: none;
+    outline: none;
+    border: none;
+    text-decoration: none;
   }
+
   .icon {
-    text-align: center;
-    color: #FFF;
-    width: 20px;
-    height: 20px;
-    font-size: 20px;
-    padding: 10px;
-    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-hero-text, #fff);
+    width: 46px;
+    height: 46px;
+    font-size: 1.25rem;
     border-radius: 50%;
-    border: 2px solid #FFF;
-    transition: all .5s;
-    &:hover {
-      color: $main;
-      background: #FFF;
+    border: 2px solid var(--color-hero-icon-border, rgba(255, 255, 255, 0.7));
+    background: transparent;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease,
+                transform 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-hero-icon-hover-text, $main);
+      background: var(--color-hero-icon-hover-bg, #fff);
+      border-color: var(--color-hero-icon-hover-bg, #fff);
+      transform: translateY(-2px);
     }
-    &:active {
-      color: $main;
-      background: #FFF;
-    }
-    @media only screen and (min-width:$cut) {
-      width: 30px;
-      height: 30px;
-      font-size: 30px;
-      line-height: 30px;
+
+    @media (min-width: $cut) {
+      width: 54px;
+      height: 54px;
+      font-size: 1.5rem;
     }
   }
 }
 
+/* ── Scroll hint ──────────────────────────────────────────── */
 .down {
-  color: #FFF;
   position: absolute;
-  bottom: 25px;
-  width: 100%;
-  margin: 0 auto;
-  display: block;
-  text-align: center;
-  font-size: 30px;
-  line-height: 30px;
-  cursor: pointer;
-  // no borders
-  outline: 0 !important;
-  border: none !important;
-  outline-style: none !important;
-  -moz-outline-style: none !important;
-  .icon {
-      position: absolute;
-      -webkit-transform-style: preserve-3d;
-      transform-style: preserve-3d;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-      width: 100px;
-      height: 100px;
-      fill: #fff;
-      -webkit-animation: pulse 1.3s infinite;
-      animation: pulse 1.3s infinite;
-      @media (prefers-reduced-motion: reduce) {
-        -webkit-animation: none;
-        animation: none;
-      }
-      &:hover {
-        color: $sec;
-      }
-      &:active {
-        color: $sec;
-      }
+  z-index: 1;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-hero-muted, rgba(255, 255, 255, 0.5));
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: color 0.25s;
+  outline: none;
+  border: none;
+
+  &:hover {
+    color: var(--color-hero-text, rgba(255, 255, 255, 0.9));
   }
+
+  .icon {
+    display: block;
+    animation: float-down 1.8s ease-in-out infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+}
+
+/* ── Open-to-work badge ───────────────────────────────────── */
+.otw-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-hero-text, rgba(255, 255, 255, 0.9));
+  background: var(--color-hero-icon-bg, rgba(255, 255, 255, 0.1));
+  border: 1px solid var(--color-hero-icon-border, rgba(255, 255, 255, 0.2));
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem 0.3rem 0.55rem;
+  margin-bottom: 1.25rem;
+  backdrop-filter: blur(4px);
+}
+
+.otw-badge__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.3);
+  animation: otw-pulse 2s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+@keyframes otw-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.3); }
+  50%       { box-shadow: 0 0 0 5px rgba(74, 222, 128, 0); }
+}
+
+/* ── Typewriter cursor ────────────────────────────────────── */
+#typewriter-text::after {
+  content: '|';
+  opacity: 1;
+  animation: cursor-blink 0.9s step-end infinite;
+  margin-left: 1px;
+
+  @media (prefers-reduced-motion: reduce) { display: none; }
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
