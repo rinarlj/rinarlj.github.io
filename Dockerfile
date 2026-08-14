@@ -1,4 +1,4 @@
-FROM ruby:3.2-bookworm
+FROM ruby:3.3-bookworm
 
 RUN apt-get update -qq \
   && apt-get install -y --no-install-recommends ca-certificates curl \
@@ -11,7 +11,9 @@ WORKDIR /srv/jekyll
 ENV LANG=C.UTF-8 \
     BUNDLE_SILENCE_ROOT_WARNING=1
 
-COPY Gemfile ./
+# Copy the lockfile too, so the image resolves the same gem versions as a local
+# install instead of re-resolving from scratch on every build.
+COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
 COPY package.json package-lock.json ./
