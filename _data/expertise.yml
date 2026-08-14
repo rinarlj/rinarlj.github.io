@@ -1,34 +1,43 @@
-# Expertise section below the hero (icons use Devicon classes bundled in main.css).
+# "What I Do" section — expertise panels below the hero.
+#
+# Fields per section:
+#   title     (required)  panel heading
+#   body      (required)  one-paragraph description
+#   highlight (optional)  small caption shown below body
+#   icons     (optional)  array of Devicon CSS class names
+#
+# Devicon class names: https://devicon.dev/
+# 3 panels reads best — they render in a single row on desktop.
+
 intro_title: What I Do
 
 sections:
-  - title: Backend & APIs
+  - title: Backend & Payments
     body: >-
-      Python, Django, Java, Spring Boot, Node.js. I build robust APIs,
-      authentication systems, and data pipelines backed by PostgreSQL,
-      MongoDB, and Redis.
+      Python, Django, and DRF on PostgreSQL and Redis, with earlier work in Java, Spring Boot, and Node.js. I own systems end to end: data models, versioned REST APIs, background job pipelines, and risky data migrations. That includes six years as main maintainer of a Stripe integration covering destination charges, PaymentIntents, ACH, 3DS, and multicurrency.
+    highlight: "10+ yrs · ~$47M in donations processed"
     icons:
       - devicon-python-plain colored
       - devicon-django-plain colored
-      - devicon-java-plain colored
-      - devicon-nodejs-plain colored
+      - devicon-postgresql-plain colored
+      - devicon-redis-plain colored
 
   - title: Frontend & UI
     body: >-
-      TypeScript, Angular, React, Vue.js. I build responsive,
-      component-driven interfaces from design to production.
+      TypeScript and Angular, including server-side rendering, with some React and Vue.js along the way. I build responsive, accessible interfaces from the data model through to production. Most recently a real-time messaging inbox, with live delivery over WebSockets and a polling fallback for when the connection drops.
+    highlight: "Angular + SSR · Design-to-production"
     icons:
       - devicon-typescript-plain colored
       - devicon-angularjs-plain colored
-      - devicon-react-original colored
-      - devicon-vuejs-plain colored
+      - devicon-javascript-plain colored
+      - devicon-sass-original colored
 
-  - title: DevOps & Tooling
+  - title: Infrastructure & Cloud
     body: >-
-      Docker, Git, Linux, CI/CD. I ship reliable software with
-      automated builds, containerized environments, and clean workflows.
+      Docker, AWS (ECS, Lambda, CloudWatch), Terraform, and CI/CD pipelines. I containerized a live payments platform for its move from Heroku to AWS, using one image that ran on both so there was never a cutover, and built the log and alarm pipeline the team watches production through.
+    highlight: "Heroku → AWS ECS · Zero-downtime deploys"
     icons:
       - devicon-docker-plain colored
-      - devicon-git-plain colored
+      - devicon-amazonwebservices-plain colored
       - devicon-linux-plain colored
-      - devicon-postgresql-plain colored
+      - devicon-git-plain colored

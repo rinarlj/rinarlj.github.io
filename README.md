@@ -6,22 +6,7 @@ A clean, single-page resume theme built with Jekyll. Designed for developers who
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/24d80ae8-c3d9-4645-a6d8-9e97fc8dec3c/deploy-status)](https://app.netlify.com/sites/jekyll-theme-minimal-resume/deploys)
 
-## Stack
-
-![](https://img.shields.io/badge/jekyll-✓-blue.svg)
-![](https://img.shields.io/badge/html5-✓-blue.svg)
-![](https://img.shields.io/badge/sass-✓-blue.svg)
-![](https://img.shields.io/badge/sweet--scroll-✓-blue.svg)
-![](https://img.shields.io/badge/particle--js-✓-blue.svg)
-![](https://img.shields.io/badge/font--awesome-✓-blue.svg)
-![](https://img.shields.io/badge/devicon-✓-blue.svg)
-![](https://img.shields.io/badge/gulp-✓-blue.svg)
-
-## Screenshots
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/murraco/jekyll-theme-minimal-resume/master/screenshot.png" width="90%" alt="Theme screenshot" />
-</p>
+[![Minimal Resume theme, animated particle hero with name, title, and social links](https://raw.githubusercontent.com/murraco/jekyll-theme-minimal-resume/master/screenshot.png)](https://jekyll-theme-minimal-resume.netlify.app)
 
 ## Features
 
@@ -34,9 +19,52 @@ A clean, single-page resume theme built with Jekyll. Designed for developers who
 - Docker support for quick preview
 - Deploys to GitHub Pages, Netlify, or any static host
 
+## Stack
+
+- **Site generator:** Jekyll 3.10 via the `github-pages` gem, so what builds locally is what GitHub Pages builds. Content comes from `_config.yml` and YAML data files, not hardcoded HTML.
+- **Styling:** Sass, one partial per section (`_header`, `_about`, `_stats`, `_footer`), with colors and breakpoints in `src/styles/_vars.scss`.
+- **Build:** Gulp compiles Sass and JavaScript from `src/` into `assets/`, then hands off to Jekyll. `npm run serve` watches both and reloads the browser.
+- **Front-end:** no framework and no jQuery. particles.js draws the animated hero background, sweet-scroll handles anchor scrolling.
+- **Icons:** Font Awesome for social links, Devicon for the technology logos in the expertise grid. Both are self-hosted from `assets/fonts`, so the page makes no third-party requests.
+- **Deployment:** plain static output. Netlify, GitHub Pages, or any static host. Docker Compose is included for a preview with no Ruby or Node installed.
+
+## File structure
+
+```
+jekyll-theme-minimal-resume/
+│
+├── _config.yml              # site and user settings (name, title, bio, social handles)
+├── index.html               # entry page; layout does the work
+│
+├── _data/
+│   ├── expertise.yml        # "What I Do" panels: titles, copy, Devicon icon names
+│   └── stats.yml            # optional stat band (disabled by default in the layout)
+│
+├── _includes/
+│   ├── head.html            # meta tags, Open Graph, JSON-LD structured data
+│   ├── header.html          # hero: name, title, social icons
+│   ├── about.html           # renders _data/expertise.yml
+│   ├── stats.html           # renders _data/stats.yml
+│   └── footer.html          # footer and script tags
+│
+├── _layouts/
+│   └── default.html         # assembles the includes
+│
+├── src/                     # sources; edit these, not assets/
+│   ├── styles/              # Sass partials + main.scss
+│   ├── js/app.js            # particles.js and sweet-scroll config
+│   └── fonts/               # Font Awesome and Devicon webfonts
+│
+├── assets/                  # Gulp output; committed so GitHub Pages can serve it
+├── gulpfile.js              # sass, js, fonts, and jekyll tasks
+└── docker-compose.yml       # preview stack (see docker-compose.dev.yml for live edits)
+```
+
+> `assets/` is generated. Edit `src/` and run `npm run build`, otherwise your changes are overwritten on the next build.
+
 ## Quick start
 
-1. Install Ruby and [Bundler](https://bundler.io/), and Node.js (LTS recommended).
+1. Install Ruby 3.3.6 (pinned in `.ruby-version`), [Bundler](https://bundler.io/), and Node.js 20 or newer.
 2. Fork this repository and clone your fork.
 3. Copy or edit `_config.yml` to personalize your site (see [Settings](#settings)).
 
@@ -44,13 +72,13 @@ A clean, single-page resume theme built with Jekyll. Designed for developers who
 
 Styles and scripts are built from `src/` into `assets/` with **Gulp**; Jekyll then copies them into `_site`.
 
-1. **Ruby dependencies:** use **Ruby 3.x** (see `.ruby-version`) so Bundler can resolve `github-pages`. With rbenv or asdf: `rbenv install` / `asdf install` as needed, then:
+1. **Ruby dependencies:** the repo pins **Ruby 3.3.6** in `.ruby-version` so Bundler can resolve `github-pages`. With rbenv or asdf, `rbenv install` / `asdf install` picks it up automatically, then:
 
    ```bash
    bundle install
    ```
 
-   Committing `Gemfile.lock` after a successful `bundle install` keeps CI and other machines on the same gem versions.
+   `Gemfile.lock` is committed and the Docker image installs from it too, so local builds, container builds, and GitHub Pages all resolve the same gem versions. If `bundle` complains it cannot find the bundler version the lockfile was built with, install it (`gem install bundler:2.5.22`) or run `bundle update --bundler`. Running against your system Ruby instead of the pinned one is the usual cause.
 
 2. **Node dependencies**:
 
@@ -163,7 +191,7 @@ github_username: yourprofile
 
 ### Expertise section (skills columns)
 
-The three columns under "My Expertise" are driven by **`_data/expertise.yml`**: section titles, body copy, and Devicon class names per column (see [Devicon](https://devicon.dev/) for available icons bundled in the theme CSS). Edit that file instead of large HTML blocks.
+The three columns under "What I Do" are driven by **`_data/expertise.yml`**: the section heading, plus a title, body copy, optional highlight caption, and Devicon class names per column (see [Devicon](https://devicon.dev/) for available icons bundled in the theme CSS). Edit that file instead of large HTML blocks.
 
 After changing `_data/expertise.yml`, rebuild with Jekyll (or `npm run build` / `npm run serve`).
 
@@ -188,7 +216,7 @@ There are no automated tests in this repository; verify changes with `npm run bu
 
 ## Author
 
-**Mauricio Urraco** -- Full Stack Engineer with 10+ years of experience.
+**Mauricio Urraco** -- Software Engineer with 10+ years of experience.
 
 - [GitHub](https://github.com/murraco)
 - [LinkedIn](https://www.linkedin.com/in/murraco)

@@ -1,6 +1,6 @@
 # Site settings
 title: Mauricio Urraco
-description: Portfolio of Mauricio Urraco — Full Stack Engineer with 10+ years of experience building web platforms, APIs, and developer tools.
+description: Portfolio of Mauricio Urraco, a senior software engineer with 10+ years of experience building web platforms, payment systems, and cloud infrastructure.
 lang: en
 # Open Graph / Twitter Card image (site root path). Set site url for correct absolute URLs when sharing.
 social_image: /assets/favicon.png
@@ -11,8 +11,8 @@ theme_color: "#1a222c"
 
 # User settings
 username: Mauricio Urraco
-user_description: Full Stack Engineer with 10+ years of experience building web platforms, APIs, and developer tools. I've worked across Argentina, the UK, and France — from research at Inria to blockchain infrastructure at Radix DLT to being the first engineering hire at Grapevine. I work primarily with Python, Django, TypeScript, and Angular, and maintain open source projects with 2,500+ GitHub stars.
-user_title: Full Stack Engineer
+user_description: Senior software engineer with 10+ years of experience building web platforms, APIs, and the infrastructure underneath them. I’ve worked across Argentina, France, and the UK, from research at Inria to blockchain tooling at Radix DLT. I joined Grapevine, a US giving platform, as its third engineer, and over six years became the largest contributor to its Django backend, maintaining the Stripe integration behind roughly $47M in donations and building its messaging system end to end, from data model to UI. I work primarily with Python, Django, PostgreSQL, TypeScript, and Angular, and maintain open-source projects with over 2,500 GitHub stars.
+user_title: Senior Software Engineer
 email: mauriurraco@gmail.com
 # twitter_username: lorem_ipsum
 instagram_username: mauriciourraco7
