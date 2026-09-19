@@ -19,7 +19,18 @@
       {% else %}
       <span class="site-description">{{ site.user_title }}</span>
       {% endif %}
+
+       {% if site.university %}
+    <div class="university">
+      {{ site.university }}
+    </div>
+    {% endif %}
+    
     </h1>
+   
+
+
+
 
     <div class="header-icons">
       {% if site.email %}

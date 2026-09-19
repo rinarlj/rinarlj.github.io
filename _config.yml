@@ -1,7 +1,6 @@
 # Site settings
-title: Mauricio Urraco
-description: Portfolio of Mauricio Urraco, a senior software engineer with 10+ years of experience building web platforms, payment systems, and cloud infrastructure.
-lang: en
+title: Rina Ralijaona
+description: Portfolio of Rina Ralijaona.
 # Open Graph / Twitter Card image (site root path). Set site url for correct absolute URLs when sharing.
 social_image: /assets/favicon.png
 og_locale: en_US
@@ -10,15 +9,16 @@ theme_color: "#1a222c"
 # url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
 
 # User settings
-username: Mauricio Urraco
-user_description: Senior software engineer with 10+ years of experience building web platforms, APIs, and the infrastructure underneath them. I’ve worked across Argentina, France, and the UK, from research at Inria to blockchain tooling at Radix DLT. I joined Grapevine, a US giving platform, as its third engineer, and over six years became the largest contributor to its Django backend, maintaining the Stripe integration behind roughly $47M in donations and building its messaging system end to end, from data model to UI. I work primarily with Python, Django, PostgreSQL, TypeScript, and Angular, and maintain open-source projects with over 2,500 GitHub stars.
-user_title: Senior Software Engineer
-email: mauriurraco@gmail.com
+username: Rina Ralijaona
+user_description: I am a Master's student in Data Science at the University of Lille, with a background in Mathematics, Computer Science, and Statistics.
+user_title: Master student in Data Science
+university: Université de Lille | Ecole Centrale Lille | IMT Nord Europe
+email: rinaralijaona4@gmail.com
 # twitter_username: lorem_ipsum
-instagram_username: mauriciourraco7
-facebook_username: mauricio.urraco
-linkedin_username: murraco
-github_username: murraco
+#instagram_username: mauriciourraco7
+#facebook_username: mauricio.urraco
+linkedin_username: Rina Ralijaona
+github_username: rinarlj
 # medium_username: lorem_ipsum
 # medium_url: lorem_ipsum.medium.com
 # gplus_username:  lorem_ipsum
